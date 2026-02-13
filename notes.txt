@@ -1,0 +1,481 @@
+Blob I think:
+1bbc89400b8404a928667497646a1ad351fc32
+
+Output en ingles
+LC_ALL=C git status
+
+cambiar salida a ingles
+export LANG=en_US.UTF-8
+ERROR TO FIX
+sergio@sergio-term:~/workspace/sergio/webflyx$ git push origin main:main
+To github-s3:s3v3ngu1a/webflix.git
+ ! [rejected]        main -> main (fetch first)
+error: falló el empuje de algunas referencias a 'github-s3:s3v3ngu1a/webflix.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+sergio@sergio-term:~/workspace/sergio/webflyx$ git fetch origin main
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Desempaquetando objetos: 100% (3/3), 1.46 KiB | 1.46 MiB/s, listo.
+Desde github-s3:s3v3ngu1a/webflix
+ * branch            main       -> FETCH_HEAD
+ * [nueva rama]      main       -> origin/main
+sergio@sergio-term:~/workspace/sergio/webflyx$ git status
+En la rama update_dune
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+	notes.txt
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+sergio@sergio-term:~/workspace/sergio/webflyx$ git checkout main
+Cambiado a rama 'main'
+sergio@sergio-term:~/workspace/sergio/webflyx$ git status
+En la rama main
+Archivos sin seguimiento:
+  (usa "git add <archivo>..." para incluirlo a lo que será confirmado)
+	notes.txt
+
+no hay nada agregado al commit pero hay archivos sin seguimiento presentes (usa "git add" para hacerles seguimiento)
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log origin/main --oneline
+979d52d (origin/main) Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ git pull
+No hay información de rastreo para la rama actual.
+Por favor especifica a qué rama quieres fusionar.
+Ver git-pull(1) para detalles.
+
+    git pull <remoto> <rama>
+
+Si deseas configurar la información de rastreo para esta rama, puedes hacerlo con:
+
+    git branch --set-upstream-to=origin/<rama> main
+
+sergio@sergio-term:~/workspace/sergio/webflyx$ git pull origin main
+Desde github-s3:s3v3ngu1a/webflix
+ * branch            main       -> FETCH_HEAD
+hint: Las ramas se han divergido y hay que especificar cómo reconciliarlas.
+hint: Se puede hacerlo ejecutando uno de los comandos siguiente antes del
+hint: próximo pull:
+hint:
+hint:   git config pull.rebase false  # fusionar
+hint:   git config pull.rebase true   # rebasar
+hint:   git config pull.ff only       # solo avance rápido
+hint:
+hint: Se puede reemplazar "git config" con "git config --global" para aplicar
+hint: la preferencia en todos los repositorios. También se puede pasar
+hint: --rebase, --no-rebase o --ff-only en el comando para sobrescribir la
+hint: configuración por defecto en cada invocación.
+fatal: Necesita especificar cómo reconciliar las ramas divergentes.
+sergio@sergio-term:~/workspace/sergio/webflyx$ git pull origin main --rebase
+Desde github-s3:s3v3ngu1a/webflix
+ * branch            main       -> FETCH_HEAD
+Rebase aplicado satisfactoriamente y actualizado refs/heads/main.
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log --oneline
+d89f8df (HEAD -> main) G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d (origin/main, origin/HEAD) Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ git push origin main
+Enumerando objetos: 21, listo.
+Contando objetos: 100% (21/21), listo.
+Compresión delta usando hasta 20 hilos
+Comprimiendo objetos: 100% (19/19), listo.
+Escribiendo objetos: 100% (20/20), 2.19 KiB | 748.00 KiB/s, listo.
+Total 20 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), done.
+To github-s3:s3v3ngu1a/webflix.git
+   979d52d..d89f8df  main -> main
+sergio@sergio-term:~/workspace/sergio/webflyx$ git config set pull.rebase false
+sergio@sergio-term:~/workspace/sergio/webflyx$ cat notes.txt
+Blob I think:
+1bbc89400b8404a928667497646a1ad351fc32
+
+Output en ingles
+LC_ALL=C git status
+
+cambiar salida a ingles
+export LANG=en_US.UTF-8
+sergio@sergio-term:~/workspace/sergio/webflyx$ export LANG=en_US.UTF-8
+sergio@sergio-term:~/workspace/sergio/webflyx$ git status
+On branch main
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	notes.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+sergio@sergio-term:~/workspace/sergio/webflyx$ git merge update_dune
+fatal: refusing to merge unrelated histories
+sergio@sergio-term:~/workspace/sergio/webflyx$ git branch update_dune
+fatal: a branch named 'update_dune' already exists
+sergio@sergio-term:~/workspace/sergio/webflyx$ git switch update_dune
+Switched to branch 'update_dune'
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log --oneline
+4a3c57d (HEAD -> update_dune) I: new quote
+3ca0a12 H: new quote
+a8d1fc4 G: new movie added
+c654ca1 F: Merge branch 'add_classics'
+d2f54ea E: content updated
+90a1762 D: classics added
+cdccd14 C: quotes added
+241bbc8 B: Movies titles added
+6a91002 A: add contents.md
+sergio@sergio-term:~/workspace/sergio/webflyx$ git rebase main
+warning: skipped previously applied commit 6a91002
+warning: skipped previously applied commit 241bbc8
+warning: skipped previously applied commit cdccd14
+warning: skipped previously applied commit d2f54ea
+warning: skipped previously applied commit 90a1762
+warning: skipped previously applied commit a8d1fc4
+hint: use --reapply-cherry-picks to include skipped commits
+hint: Disable this message with "git config set advice.skippedCherryPicks false"
+Successfully rebased and updated refs/heads/update_dune.
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log --oneline
+c6bc769 (HEAD -> update_dune) I: new quote
+13098e3 H: new quote
+d89f8df (origin/main, origin/HEAD, main) G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ git checkout main
+Switched to branch 'main'
+sergio@sergio-term:~/workspace/sergio/webflyx$ git merge update_dune
+Updating d89f8df..c6bc769
+Fast-forward
+ quotes/dune.md | 2 ++
+ 1 file changed, 2 insertions(+)
+sergio@sergio-term:~/workspace/sergio/webflyx$ git pull origin main
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 974 bytes | 974.00 KiB/s, done.
+From github-s3:s3v3ngu1a/webflix
+ * branch            main       -> FETCH_HEAD
+   d89f8df..ca8fb13  main       -> origin/main
+Merge made by the 'ort' strategy.
+ classics.csv | 1 +
+ 1 file changed, 1 insertion(+)
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log --oneline
+f45ea53 (HEAD -> main) K: Merge branch 'main' of github-s3:s3v3ngu1a/webflix
+c6bc769 (update_dune) I: new quote
+13098e3 H: new quote
+ca8fb13 (origin/main, origin/HEAD) J: Update classics.csv
+d89f8df G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ git log --oneline
+f45ea53 (HEAD -> main) K: Merge branch 'main' of github-s3:s3v3ngu1a/webflix
+c6bc769 (update_dune) I: new quote
+13098e3 H: new quote
+ca8fb13 (origin/main, origin/HEAD) J: Update classics.csv
+d89f8df G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ git branch -d update_dune
+Deleted branch update_dune (was c6bc769).
+sergio@sergio-term:~/workspace/sergio/webflyx$ bootdev run 68fb19fe-ef3d-4d11-ad8a-3d009cc64319
+╭───────────────────────────────────────╮
+│ Running: git --no-pager log --oneline │
+╰┬──────────────────────────────────────╯
+ ├─  ?  Expect stdout to contain all of:
+ │       - 'A'
+ │       - 'B'
+ │       - 'C'
+ │       - 'D'
+ │       - 'E'
+ │       - 'F'
+ │       - 'G'
+ │       - 'H'
+ │       - 'I'
+ │       - 'J'
+ │       - 'K'
+ > Command stdout:
+
+f45ea53 K: Merge branch 'main' of github-s3:s3v3ngu1a/webflix
+c6bc769 I: new quote
+13098e3 H: new quote
+ca8fb13 J: Update classics.csv
+d89f8df G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+sergio@sergio-term:~/workspace/sergio/webflyx$ bootdev run 68fb19fe-ef3d-4d11-ad8a-3d009cc64319 -s
+╭──────────────────────────────────────────╮
+│ X  Running: git --no-pager log --oneline │
+╰┬─────────────────────────────────────────╯
+ ├─  X  Expect stdout to contain all of:
+ │       - 'A'
+ │       - 'B'
+ │       - 'C'
+ │       - 'D'
+ │       - 'E'
+ │       - 'F'
+ │       - 'G'
+ │       - 'H'
+ │       - 'I'
+ │       - 'J'
+ │       - 'K'
+ > Command stdout:
+
+f45ea53 K: Merge branch 'main' of github-s3:s3v3ngu1a/webflix
+c6bc769 I: new quote
+13098e3 H: new quote
+ca8fb13 J: Update classics.csv
+d89f8df G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+
+
+Tests failed! ❌
+
+Failed Step: 1
+Error: expected stdout to contain F
+
+sergio@sergio-term:~/workspace/sergio/webflyx$ ^C
+sergio@sergio-term:~/workspace/sergio/webflyx$ git reflog | grep 'F: '
+sergio@sergio-term:~/workspace/sergio/webflyx$ git reflog
+f45ea53 (HEAD -> main) HEAD@{0}: pull origin main: Merge made by the 'ort' strategy.
+c6bc769 HEAD@{1}: merge update_dune: Fast-forward
+d89f8df HEAD@{2}: checkout: moving from update_dune to main
+c6bc769 HEAD@{3}: rebase (finish): returning to refs/heads/update_dune
+c6bc769 HEAD@{4}: rebase (pick): I: new quote
+13098e3 HEAD@{5}: rebase (pick): H: new quote
+d89f8df HEAD@{6}: rebase (start): checkout main
+4a3c57d HEAD@{7}: checkout: moving from main to update_dune
+d89f8df HEAD@{8}: pull origin main --rebase (finish): returning to refs/heads/main
+d89f8df HEAD@{9}: pull origin main --rebase (pick): G: new movie added
+878bf0b HEAD@{10}: pull origin main --rebase (pick): D: classics added
+f6928a5 HEAD@{11}: pull origin main --rebase (pick): E: content updated
+9b3e0ef HEAD@{12}: pull origin main --rebase (pick): C: quotes added
+41dcbdd HEAD@{13}: pull origin main --rebase (pick): B: Movies titles added
+7327918 HEAD@{14}: pull origin main --rebase (pick): A: add contents.md
+979d52d HEAD@{15}: pull origin main --rebase (start): checkout 979d52d4fcb09c746e97783b3850415fa0f88f6a
+a8d1fc4 HEAD@{16}: checkout: moving from update_dune to main
+4a3c57d HEAD@{17}: reset: moving to 4a3c57d
+4a3c57d HEAD@{18}: reset: moving to 4a3c57d
+f993b79 HEAD@{19}: commit: J: new awesome tittle added
+4a3c57d HEAD@{20}: rebase (finish): returning to refs/heads/update_dune
+4a3c57d HEAD@{21}: rebase (pick): I: new quote
+3ca0a12 HEAD@{22}: rebase (pick): H: new quote
+a8d1fc4 HEAD@{23}: rebase (start): checkout main
+71f088e HEAD@{24}: commit: I: new quote
+13f1d01 HEAD@{25}: commit: H: new quote
+90a1762 HEAD@{26}: checkout: moving from main to update_dune
+a8d1fc4 HEAD@{27}: merge update_titles: Fast-forward
+c654ca1 HEAD@{28}: checkout: moving from update_titles to main
+a8d1fc4 HEAD@{29}: commit: G: new movie added
+c654ca1 HEAD@{30}: Branch: renamed refs/heads/titles.md to refs/heads/update_titles
+c654ca1 HEAD@{32}: checkout: moving from main to titles.md
+c654ca1 HEAD@{33}: merge add_classics: Merge made by the 'ort' strategy.
+d2f54ea HEAD@{34}: checkout: moving from main to main
+d2f54ea HEAD@{35}: checkout: moving from add_classics to main
+90a1762 HEAD@{36}: reset: moving to HEAD^
+4f42679 HEAD@{37}: checkout: moving from main to add_classics
+d2f54ea HEAD@{38}: cherry-pick: E: content updated
+cdccd14 HEAD@{39}: checkout: moving from add_classics to main
+4f42679 HEAD@{40}: commit: E: content updated
+90a1762 HEAD@{41}: commit: D: classics added
+cdccd14 HEAD@{42}: checkout: moving from main to add_classics
+cdccd14 HEAD@{43}: checkout: moving from main to main
+cdccd14 HEAD@{44}: checkout: moving from add_classics to main
+cdccd14 HEAD@{45}: checkout: moving from main to add_classics
+cdccd14 HEAD@{46}: Branch: renamed refs/heads/master to refs/heads/main
+cdccd14 HEAD@{48}: commit: C: quotes added
+241bbc8 HEAD@{49}: commit: B: Movies titles added
+6a91002 HEAD@{50}: commit (initial): A: add contents.md
+sergio@sergio-term:~/workspace/sergio/webflyx$ git reflog --no-pager
+fatal: unrecognized argument: --no-pager
+sergio@sergio-term:~/workspace/sergio/webflyx$ git reflog
+f45ea53 (HEAD -> main) HEAD@{0}: pull origin main: Merge made by the 'ort' strategy.
+c6bc769 HEAD@{1}: merge update_dune: Fast-forward
+d89f8df HEAD@{2}: checkout: moving from update_dune to main
+c6bc769 HEAD@{3}: rebase (finish): returning to refs/heads/update_dune
+c6bc769 HEAD@{4}: rebase (pick): I: new quote
+13098e3 HEAD@{5}: rebase (pick): H: new quote
+d89f8df HEAD@{6}: rebase (start): checkout main
+4a3c57d HEAD@{7}: checkout: moving from main to update_dune
+d89f8df HEAD@{8}: pull origin main --rebase (finish): returning to refs/heads/main
+d89f8df HEAD@{9}: pull origin main --rebase (pick): G: new movie added
+878bf0b HEAD@{10}: pull origin main --rebase (pick): D: classics added
+f6928a5 HEAD@{11}: pull origin main --rebase (pick): E: content updated
+9b3e0ef HEAD@{12}: pull origin main --rebase (pick): C: quotes added
+41dcbdd HEAD@{13}: pull origin main --rebase (pick): B: Movies titles added
+7327918 HEAD@{14}: pull origin main --rebase (pick): A: add contents.md
+979d52d HEAD@{15}: pull origin main --rebase (start): checkout 979d52d4fcb09c746e97783b3850415fa0f88f6a
+a8d1fc4 HEAD@{16}: checkout: moving from update_dune to main
+4a3c57d HEAD@{17}: reset: moving to 4a3c57d
+4a3c57d HEAD@{18}: reset: moving to 4a3c57d
+f993b79 HEAD@{19}: commit: J: new awesome tittle added
+4a3c57d HEAD@{20}: rebase (finish): returning to refs/heads/update_dune
+4a3c57d HEAD@{21}: rebase (pick): I: new quote
+3ca0a12 HEAD@{22}: rebase (pick): H: new quote
+a8d1fc4 HEAD@{23}: rebase (start): checkout main
+71f088e HEAD@{24}: commit: I: new quote
+13f1d01 HEAD@{25}: commit: H: new quote
+90a1762 HEAD@{26}: checkout: moving from main to update_dune
+a8d1fc4 HEAD@{27}: merge update_titles: Fast-forward
+c654ca1 HEAD@{28}: checkout: moving from update_titles to main
+a8d1fc4 HEAD@{29}: commit: G: new movie added
+c654ca1 HEAD@{30}: Branch: renamed refs/heads/titles.md to refs/heads/update_titles
+c654ca1 HEAD@{32}: checkout: moving from main to titles.md
+c654ca1 HEAD@{33}: merge add_classics: Merge made by the 'ort' strategy.
+d2f54ea HEAD@{34}: checkout: moving from main to main
+d2f54ea HEAD@{35}: checkout: moving from add_classics to main
+90a1762 HEAD@{36}: reset: moving to HEAD^
+4f42679 HEAD@{37}: checkout: moving from main to add_classics
+d2f54ea HEAD@{38}: cherry-pick: E: content updated
+cdccd14 HEAD@{39}: checkout: moving from add_classics to main
+4f42679 HEAD@{40}: commit: E: content updated
+90a1762 HEAD@{41}: commit: D: classics added
+cdccd14 HEAD@{42}: checkout: moving from main to add_classics
+cdccd14 HEAD@{43}: checkout: moving from main to main
+cdccd14 HEAD@{44}: checkout: moving from add_classics to main
+cdccd14 HEAD@{45}: checkout: moving from main to add_classics
+cdccd14 HEAD@{46}: Branch: renamed refs/heads/master to refs/heads/main
+cdccd14 HEAD@{48}: commit: C: quotes added
+241bbc8 HEAD@{49}: commit: B: Movies titles added
+6a91002 HEAD@{50}: commit (initial): A: add contents.md
+sergio@sergio-term:~/workspace/sergio/webflyx$ cd ..
+sergio@sergio-term:~/workspace/sergio$ cd webflyx-local/
+sergio@sergio-term:~/workspace/sergio/webflyx-local$ git reflog
+a8d1fc4 (HEAD -> main, origin/main) HEAD@{0}: initial pull
+sergio@sergio-term:~/workspace/sergio/webflyx-local$ git log --one-line
+fatal: unrecognized argument: --one-line
+sergio@sergio-term:~/workspace/sergio/webflyx-local$ git log --oneline
+a8d1fc4 (HEAD -> main, origin/main) G: new movie added
+c654ca1 F: Merge branch 'add_classics'
+d2f54ea E: content updated
+90a1762 D: classics added
+cdccd14 C: quotes added
+241bbc8 B: Movies titles added
+6a91002 A: add contents.md
+########################################################################
+########################################################################
+########################################################################
+The following is the steps that I made to end up with the F commit lost
+in some how. By fortune I have on another directory another repo that
+use this as remote so I identified the sha-1 of the "missing" F commit
+message.
+$ git push origin main:main
+ ! [rejected]        main -> main (fetch first)
+$ git fetch origin main
+$ git pull origin main
+Conflict diverges history
+$ git pull origin main --rebase
+sucess rebase and main updated
+Log output
+$ git log --oneline
+d89f8df (HEAD -> main) G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d (origin/main, origin/HEAD) Initial commit
+$ git push origin main
+Success all pushed
+$ git config set pull.rebase false
+as specified by lesson
+$ git merge update_dune
+fatal: refusing to merge unrelated histories
+Switch to update_dune
+$ git log --oneline
+4a3c57d (HEAD -> update_dune) I: new quote
+3ca0a12 H: new quote
+a8d1fc4 G: new movie added
+c654ca1 F: Merge branch 'add_classics'
+d2f54ea E: content updated
+90a1762 D: classics added
+cdccd14 C: quotes added
+241bbc8 B: Movies titles added
+6a91002 A: add contents.md
+$ git rebase main
+warning: skipped previously applied commit 6a91002
+warning: skipped previously applied commit 241bbc8
+warning: skipped previously applied commit cdccd14
+warning: skipped previously applied commit d2f54ea
+warning: skipped previously applied commit 90a1762
+warning: skipped previously applied commit a8d1fc4
+hint: use --reapply-cherry-picks to include skipped commits
+hint: Disable this message with "git config set advice.skippedCherryPicks false"
+Successfully rebased and updated refs/heads/update_dune.
+$ git log --oneline
+c6bc769 (HEAD -> update_dune) I: new quote
+13098e3 H: new quote
+d89f8df (origin/main, origin/HEAD, main) G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+$ git checkout main
+Switched to branch 'main'
+$ git merge update_dune
+Updating d89f8df..c6bc769
+Fast-forward
+ quotes/dune.md | 2 ++
+ 1 file changed, 2 insertions(+)
+$ git pull origin main
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 974 bytes | 974.00 KiB/s, done.
+From github-s3:s3v3ngu1a/webflix
+ * branch            main       -> FETCH_HEAD
+   d89f8df..ca8fb13  main       -> origin/main
+Merge made by the 'ort' strategy.
+ classics.csv | 1 +
+ 1 file changed, 1 insertion(+)
+$ git log --oneline
+f45ea53 (HEAD -> main) K: Merge branch 'main' of github-s3:s3v3ngu1a/webflix
+c6bc769 (update_dune) I: new quote
+13098e3 H: new quote
+ca8fb13 (origin/main, origin/HEAD) J: Update classics.csv
+d89f8df G: new movie added
+878bf0b D: classics added
+f6928a5 E: content updated
+9b3e0ef C: quotes added
+41dcbdd B: Movies titles added
+7327918 A: add contents.md
+979d52d Initial commit
+After performing $ git reflog i found the "missing commit hash"
+c654ca1 HEAD@{30}: Branch: renamed refs/heads/titles.md to refs/heads/update_titles
+c654ca1 HEAD@{32}: checkout: moving from main to titles.md
+c654ca1 HEAD@{33}: merge add_classics: Merge made by the 'ort' strategy.
+And here is from my local mirror history:
+sergio@sergio-term:~/workspace/sergio/webflyx-local$ git log --oneline
+a8d1fc4 (HEAD -> main, origin/main) G: new movie added
+c654ca1 F: Merge branch 'add_classics'
+d2f54ea E: content updated
+90a1762 D: classics added
+cdccd14 C: quotes added
+241bbc8 B: Movies titles added
+6a91002 A: add contents.md
+How can I recompose the "missing" history point?
